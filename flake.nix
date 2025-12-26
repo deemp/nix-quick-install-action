@@ -63,7 +63,12 @@
           nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_29
           nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_30
           # The actual version is 2.31.2+1
-          (nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_31 // { version = "2.31.2"; })
+          (let drv =
+           nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_31;
+           in
+            # overrideAttrs doesn't work for some reason
+            drv // rec { version = "2.31.2"; name = "${drv.pname}-${version}";} 
+          )
           nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_32
           nix_2_33.packages.${system}.nix
         ]
