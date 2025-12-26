@@ -43,7 +43,7 @@ jobs:
   test:
     needs: build
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os:
           - ubuntu-24.04
@@ -79,7 +79,7 @@ jobs:
   test-cachix:
     needs: build
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os:
           - ubuntu-24.04
