@@ -58,7 +58,7 @@ runs:
       run: ${{ github.action_path }}/nix-quick-install.sh
       shell: bash
       env:
-        RELEASE_FILE: ${{ github.action_path }}/RELEASE
+        RELEASE_FILE: ${{ github.action_path }}/RELEASE.md
         NIX_VERSION: ${{ inputs.nix_version }}
         NIX_CONF: ${{ inputs.nix_conf }}
         NIX_ARCHIVES_URL: ${{ inputs.nix_archives_url }}

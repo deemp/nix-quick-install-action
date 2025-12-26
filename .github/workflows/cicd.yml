@@ -159,6 +159,6 @@ jobs:
       - name: Build release script
         run: nix build .#release
       - name: Release if needed
-        run: ./result/bin/release /tmp/archives ./RELEASE
+        run: ./result/bin/release /tmp/archives ./RELEASE.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
