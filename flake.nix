@@ -3,13 +3,10 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:nixos/nixpkgs/master";
-    nix_2_31.url = "github:nixos/nix/2.31.2";
-    nix_2_30.url = "github:nixos/nix/2.30.3";
-    nix_2_24.url = "github:nixos/nix/2.24.15";
-    nix_2_26.url = "github:nixos/nix/2.26.4";
-    nix_2_28.url = "github:nixos/nix/2.28.5";
-    nix_2_29.url = "github:nixos/nix/2.29.2";
+    # Latest commit on master
+    nixpkgs.url = "github:nixos/nixpkgs/cb48717c767376d77c490b2d67f2a6a845deb714";
+    # This version is available only in the nixos/nix repo
+    nix_2_33.url = "github:nixos/nix/2.33.0";
   };
 
   nixConfig = {
@@ -22,12 +19,7 @@
     self,
     flake-utils,
     nixpkgs,
-    nix_2_24,
-    nix_2_26,
-    nix_2_28,
-    nix_2_29,
-    nix_2_30,
-    nix_2_31
+    nix_2_33,
   }:
   let allSystems = [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
   in flake-utils.lib.eachSystem allSystems (system:
@@ -65,16 +57,13 @@
         nix.version nix
       ) (
         [
-          nix_2_31.packages.${system}.nix
-          nix_2_30.packages.${system}.nix
-          nix_2_29.packages.${system}.nix
-          nix_2_28.packages.${system}.nix
-          nix_2_26.packages.${system}.nix
-          nix_2_24.packages.${system}.nix
-        ] ++
-        lib.optionals (system != "aarch64-linux")
-        [
-          nixpkgs.legacyPackages.${system}.nixVersions.minimum
+          nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_28
+          nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_29
+          nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_30
+          # The actual version is 2.31.2+1
+          (nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_31 // { version = "2.31.2"; })
+          nixpkgs.legacyPackages.x86_64-linux.nixVersions.nix_2_32
+          nix_2_33.packages.${system}.nix
         ]
       ));
 
