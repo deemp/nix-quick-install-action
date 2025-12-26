@@ -95,9 +95,6 @@ jobs:
           - 2.31.2
           - 2.32.4
           - 2.33.0
-        exclude:
-          - os: ubuntu-24.04-arm
-            nix_version: 2.3.18
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
