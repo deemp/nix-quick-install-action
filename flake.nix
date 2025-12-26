@@ -52,7 +52,9 @@
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          (self: super: super.prefer-remote-fetch self super)
+          # TODO enable after the issue is fixed:
+          # https://github.com/NixOS/nixpkgs/issues/467200
+          # (self: super: super.prefer-remote-fetch self super)
         ];
       };
 
