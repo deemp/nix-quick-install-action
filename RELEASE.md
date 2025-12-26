@@ -1,7 +1,12 @@
-v34
+v35
 
 ## Changes
 
-* Update Nix versions: 2.31.0 -> 2.31.2, 2.30.0 -> 2.30.3, 2.29.1 -> 2.29.2, 2.28.4 -> 2.28.5.
+### Add Nix versions
 
-* Bump default Nix version: 2.29.1 -> 2.29.2
+- 2.32.4
+- 2.33.0
+
+### Bump the default Nix version
+
+2.29.2 -> 2.33.0
